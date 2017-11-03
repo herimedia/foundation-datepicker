@@ -377,9 +377,13 @@
             if (!$.isArray(this.datesDisabled)) {
                 this.datesDisabled = this.datesDisabled.split(/,\s*/);
             }
+
+            var format    = this.format;
+            var language  = this.language;
             this.datesDisabled = $.map(this.datesDisabled, function(d) {
-                return DPGlobal.parseDate(d, this.format, this.language).valueOf();
+                return DPGlobal.parseDate(d, format, language).valueOf();
             });
+
             this.update();
             this.updateNavArrows();
         },
