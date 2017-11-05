@@ -26,7 +26,6 @@
         this.language = this.language in dates ? this.language : "en";
         this.isRTL = dates[this.language].rtl || false;
         this.format = DPGlobal.parseFormat(options.format || this.element.data('date-format') || dates[this.language].format || 'mm/dd/yyyy');
-        this.formatText = options.format || this.element.data('date-format') || dates[this.language].format || 'mm/dd/yyyy';
         this.isInline = false;
         this.isInput = this.element.is('input');
         this.component = this.element.is('.date') ? this.element.find('.prefix, .postfix') : false;
@@ -443,17 +442,7 @@
             else {
                 date = this.isInput ? this.element.val() : this.element.data('date') || this.element.find('input').val();
             }
-    
-            if (date && date.length > this.formatText.length) {
-                    $(this.picker).addClass('is-invalid')
-                    $(this.element).addClass('is-invalid-input')
-                    return;
-            } else {
-                $(this.picker).removeClass('is-invalid')
-                $(this.element).removeClass('is-invalid-input')
-                  
-            }
-        
+
             this.date = DPGlobal.parseDate(date, this.format, this.language);  
 
             if (fromArgs || this.initialDate != null) this.setValue();
@@ -1199,7 +1188,6 @@
             if (!separators || !separators.length || !parts || parts.length === 0) {
                 throw new Error("Invalid date format.");
             }
-            this.formatText = format;
             return {
                 separators: separators,
                 parts: parts
